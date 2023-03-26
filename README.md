@@ -1,2 +1,2 @@
 # PyGravit
-Module for managing accounts in GravitLauncher Database
+Module for managing accounts in GravitLauncher Database.
