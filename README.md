@@ -23,7 +23,7 @@ from pygravit.exceptions import DatabaseConnectionError, NicknameInDatabaseError
 
 
 ## Documentation
-### Examples
+### 1. Examples
 **api_gravitpy_example.py**
 ```python
 from pygravit import PyGravit
@@ -87,7 +87,7 @@ except (NicknameNotInDatabaseError or ParamNotFoundError or DataError or ClassDa
 ```
 
 
-## Exceptions
+### 2. Exceptions
 ```
 DatabaseConnectionError - Failed to connect to database
 NicknameInDatabaseError - Nickname already exists in the database
@@ -97,4 +97,18 @@ ClassDatabaseNotConnectionError - The database object is not a MySQLConnection
 NicknameLengthError - Nickname does not meet standard length (either short or long)
 ParamNotFoundError - The player parameter was not found in the database (used to get and change values in the database)
 DataError - Failed to send data to database
+```
+
+
+### 3. Classes and Methods
+## Classes
+```
+PyGravit(db, user, passwd, host, port) -  An object class for connecting to a database
+```
+## Methods
+```
+player_create(nickname, password) - Creating a player in the database
+                                          player_delete(nickname) - Removing a player from the database
+                                          player_change(nickname, param, value) - Changing the player
+                                          player_get(nickname, param) - Getting the player parameter
 ```
