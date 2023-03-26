@@ -21,8 +21,8 @@ from pygravit.exceptions import DatabaseConnectionError, NicknameInDatabaseError
 ```
 4. Check out the documentation for further work.
 
-### Documentation
-## Examples
+## Documentation
+### Examples
 **api_gravitpy_example.py**
 ```python
 from pygravit import PyGravit
