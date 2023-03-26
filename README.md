@@ -101,11 +101,11 @@ DataError - Failed to send data to database
 
 
 ### 3. Classes and Methods
-## Classes
+#### Classes
 ```
 PyGravit(db, user, passwd, host, port) -  An object class for connecting to a database
 ```
-## Methods
+#### Methods
 ```
 player_create(nickname, password) - Creating a player in the database
                                           player_delete(nickname) - Removing a player from the database
