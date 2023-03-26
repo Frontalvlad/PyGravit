@@ -1,5 +1,5 @@
 <p align="center">
-      <img src="https://cdn.discordapp.com/attachments/1084489981193621580/1089661272682934303/hero.png" alt="Project Logo" width="400" height="400>
+      <img src="https://cdn.discordapp.com/attachments/1084489981193621580/1089661272682934303/hero.png" alt="Project Logo" width="128" height="128">
 </p>
 
 # PyGravit
