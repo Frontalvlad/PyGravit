@@ -66,7 +66,7 @@ class ClassDatabaseNotConnectionError(Exception):
         if self.message:
             return "{0}".format(self.message)
         else:
-            return "Use the GravitPy() class to create a database."
+            return "Use the PyGravit() class to create a database."
         
 class NicknameLengthError(Exception):
     def __init__(self, *args: object) -> None:

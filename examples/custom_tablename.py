@@ -1,6 +1,6 @@
-import gravitpy
+from pygravit import PyGravit
 
-GravitLauncher = gravitpy.GravitPy(db="dbname",
+DataBase = PyGravit(db="dbname",
                                 host="ip/domainname",
                                 port=3306,
                                 user="username",

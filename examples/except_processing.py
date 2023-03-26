@@ -1,9 +1,9 @@
-import pygravit
-from pygravit.exceptions import (DatabaseConnectionError, NicknameInDatabaseError, NicknameNotInDatabaseError,
+from pygravit import PyGravit
+from pygravit.scripts.exceptions import (DatabaseConnectionError, NicknameInDatabaseError, NicknameNotInDatabaseError,
                                 AllowedCharactersNicknameError, ClassDatabaseNotConnectionError, NicknameLengthError,
                                 ParamNotFoundError, DataError)
 try:
-    GravitLauncher = pygravit.PyGravit(db="dbname", host="ip/domainname", port=3306, user="username", passwd="password", table="tablename (default users)")
+    GravitLauncher = PyGravit(db="dbname", host="ip/domainname", port=3306, user="username", passwd="password", table="tablename (default users)")
 except DatabaseConnectionError as e: 
     print(e)
 

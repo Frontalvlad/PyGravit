@@ -1,14 +1,14 @@
-from exceptions import (DatabaseConnectionError, ClassDatabaseNotConnectionError, 
+from scripts.exceptions import (DatabaseConnectionError, ClassDatabaseNotConnectionError, 
                                 NicknameNotInDatabaseError, ParamNotFoundError, DataError,
                                 NicknameLengthError, NicknameInDatabaseError, AllowedCharactersNicknameError)
-import pymysql
+import mysql.connector
 import bcrypt
 import datetime
 
 class PyGravit():
-    def __init__(self, db, user, passwd, host, port = 3306, table = "users"):
+    def __init__(self, db, user, passwd, host, port = "3306", table = "users"):
         try:
-            self.connection = pymysql.connect(
+            self.connection = mysql.connector.MySQLConnection(
                 db = db,
                 user = user,
                 password = passwd,
@@ -19,9 +19,10 @@ class PyGravit():
             
             self.table = table
             
-            with self.connection.cursor() as crs:
-                S = "SELECT table_name FROM information_schema.tables WHERE table_name=%s"
-                if not crs.execute(S, (table,)):
+            with self.connection.cursor(buffered=True) as crs:
+                S = "SHOW TABLES LIKE %s;"
+                crs.execute(S, (table,))
+                if not len(crs.fetchall()):
                     print("Executing a MySQL query to create the {} table..".format(table))
                     MYSQLREQUESTS_ARRAY = [
                         "CREATE TABLE `{}` (`id` int(11) NOT NULL AUTO_INCREMENT,`nickname` varchar(16) NOT NULL,`password` varchar(255) NOT NULL,`joined` int(8) NOT NULL,PRIMARY KEY (`id`),KEY `id` (`id`));".format(table),
@@ -48,7 +49,7 @@ class PyGravit():
         It checks if a given nickname is valid and can be added to the database.
         return -> True (bool)
         '''
-        with self.connection.cursor() as crs:
+        with self.connection.cursor(buffered=True) as crs:
             crs.execute("SELECT `nickname` FROM {};".format(self.table)) 
             sql_nicks_unpack = crs.fetchall()
             
@@ -74,17 +75,17 @@ class PyGravit():
             :password: (str): The password of the user to add.
         return -> None
         '''
-        if not isinstance(self.connection, pymysql.Connection): raise ClassDatabaseNotConnectionError
+        if not isinstance(self.connection, mysql.connector.MySQLConnection): raise ClassDatabaseNotConnectionError
 
         if not self.__check_nickname(nickname):
-            return
+            return False
 
         data_user = {
             "nickname": nickname,
             "password": bcrypt.hashpw(password.encode(), bcrypt.gensalt()),
             "joined": datetime.datetime.today().strftime("%Y%m%d") 
         }
-        with self.connection.cursor() as crs:
+        with self.connection.cursor(buffered=True) as crs:
             crs.execute("INSERT INTO `{}` (`nickname`,`password`,`joined`) VALUES (%s, %s, %s)".format(self.table), (data_user["nickname"], data_user["password"], data_user["joined"],))
 
         
@@ -95,10 +96,12 @@ class PyGravit():
             :nickname: (str): The nickname of the user to delete.
         return -> None
         '''
-        if not isinstance(self.connection, pymysql.Connection): raise ClassDatabaseNotConnectionError
+        if not isinstance(self.connection, mysql.connector.MySQLConnection): raise ClassDatabaseNotConnectionError
         
-        with self.connection.cursor() as crs:
-            if not crs.execute("SELECT `nickname` FROM `{}` WHERE `nickname` = %s".format(self.table), (nickname,)): raise NicknameNotInDatabaseError    
+        with self.connection.cursor(buffered=True) as crs:
+            crs.execute("SELECT `nickname` FROM `{}` WHERE `nickname` = %s".format(self.table), (nickname,))
+            if not len(crs.fetchone()): raise NicknameNotInDatabaseError   
+
             crs.execute("DELETE FROM `{}` WHERE (`nickname` = %s);".format(self.table), (nickname,))
 
 
@@ -111,22 +114,23 @@ class PyGravit():
             :value: (str): The new value of the parameter to set.
         return -> None
         '''
-        if not isinstance(self.connection, pymysql.Connection): raise ClassDatabaseNotConnectionError
+        if not isinstance(self.connection, mysql.connector.MySQLConnection): raise ClassDatabaseNotConnectionError
 
-        with self.connection.cursor() as crs:
-            if not crs.execute("SELECT `nickname` FROM `{}` WHERE `nickname` = %s".format(self.table), (nickname,)): raise NicknameNotInDatabaseError   
+        with self.connection.cursor(buffered=True) as crs:
+            crs.execute("SELECT `nickname` FROM `{}` WHERE `nickname` = %s".format(self.table), (nickname,))
+            if not len(crs.fetchone()): raise NicknameNotInDatabaseError   
+
             crs.execute("SHOW COLUMNS FROM `{}`;".format(self.table))
             columns = [column[0] for column in crs.fetchall()]
                 
             if param not in columns: raise ParamNotFoundError
-            match param:
-                    case "password":
-                        value = bcrypt.hashpw(value.encode(), bcrypt.gensalt())
-                        crs.execute("UPDATE `{}` SET `password` = %s WHERE `nickname` = %s;".format(self.table), (value, nickname,))
-                    case _:
-                        try:
-                            crs.execute("UPDATE `{0}` SET `{1}` = %s WHERE `nickname` = %s;".format(self.table, param), (value, nickname,))
-                        except: raise DataError
+            if param == "password":    
+                value = bcrypt.hashpw(value.encode(), bcrypt.gensalt())
+                crs.execute("UPDATE `{}` SET `password` = %s WHERE `nickname` = %s;".format(self.table), (value, nickname,))
+            else:
+                try:
+                    crs.execute("UPDATE `{0}` SET `{1}` = %s WHERE `nickname` = %s;".format(self.table, param), (value, nickname,))
+                except: raise DataError
 
     def player_get(self, nickname, param) -> str:
         '''
@@ -135,10 +139,11 @@ class PyGravit():
             :nickname: (str): The nickname of the user to retrieve information for.
             :param: (str): The parameter of the user to retrieve (e.g. "password").
         '''
-        if not isinstance(self.connection, pymysql.Connection): raise ClassDatabaseNotConnectionError
+        if not isinstance(self.connection, mysql.connector.MySQLConnection): raise ClassDatabaseNotConnectionError
 
-        with self.connection.cursor() as crs:
-            if not crs.execute("SELECT `nickname` FROM `{}` WHERE `nickname` = %s".format(self.table), (nickname,)): raise NicknameNotInDatabaseError
+        with self.connection.cursor(buffered=True) as crs:
+            crs.execute("SELECT `nickname` FROM `{}` WHERE `nickname` = %s".format(self.table), (nickname,))
+            if not len(crs.fetchone()): raise NicknameNotInDatabaseError   
 
             crs.execute("SHOW COLUMNS FROM {};".format(self.table))
             columns = [column[0] for column in crs.fetchall()]
