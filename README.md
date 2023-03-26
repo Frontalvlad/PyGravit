@@ -21,6 +21,7 @@ from pygravit.exceptions import DatabaseConnectionError, NicknameInDatabaseError
 ```
 4. Check out the documentation for further work.
 
+
 ## Documentation
 ### Examples
 **api_gravitpy_example.py**
@@ -85,7 +86,8 @@ except (NicknameNotInDatabaseError or ParamNotFoundError or DataError or ClassDa
     print(e)
 ```
 
-##Exceptions
+
+## Exceptions
 ```
 DatabaseConnectionError - Failed to connect to database
 NicknameInDatabaseError - Nickname already exists in the database
