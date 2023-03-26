@@ -84,3 +84,15 @@ try:
 except (NicknameNotInDatabaseError or ParamNotFoundError or DataError or ClassDatabaseNotConnectionError) as e:
     print(e)
 ```
+
+##Exceptions
+```
+DatabaseConnectionError - Failed to connect to database
+NicknameInDatabaseError - Nickname already exists in the database
+NicknameNotInDatabaseError - Nickname not found in database
+AllowedCharactersNicknameError - Nickname has forbidden characters (forbidden in normal minecraft)
+ClassDatabaseNotConnectionError - The database object is not a MySQLConnection
+NicknameLengthError - Nickname does not meet standard length (either short or long)
+ParamNotFoundError - The player parameter was not found in the database (used to get and change values in the database)
+DataError - Failed to send data to database
+```
