@@ -106,7 +106,7 @@ DataError - Failed to send data to database
 
 ### 3. Classes and Methods
 #### Classes
-```
+```python
 PyGravit(db, user, passwd, host, port) -  An object class for connecting to a database
 ```
 #### Methods
