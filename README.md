@@ -20,8 +20,8 @@ python -m pip install pygravit
 3. Import it into your project
 **Imports**
 ```python
-import pygravit
-from pygravit.exceptions import DatabaseConnectionError, NicknameInDatabaseError, NicknameNotInDatabaseError, AllowedCharactersNicknameError, ClassDatabaseNotConnectionError, NicknameLengthError, ParamNotFoundError, DataError
+from pygravit import PyGravit
+from pygravit import (DatabaseConnectionError, NicknameInDatabaseError, NicknameNotInDatabaseError, AllowedCharactersNicknameError, ClassDatabaseNotConnectionError, NicknameLengthError, ParamNotFoundError, DataError)
 ```
 4. Check out the documentation for further work.
 
@@ -65,7 +65,7 @@ GravitLauncher = PyGravit(db="dbname",
 **except_processing.py**
 ```python
 from pygravit import PyGravit
-from pygravit.scripts.exceptions import (DatabaseConnectionError, NicknameInDatabaseError, NicknameNotInDatabaseError,
+from pygravit import (DatabaseConnectionError, NicknameInDatabaseError, NicknameNotInDatabaseError,
                                 AllowedCharactersNicknameError, ClassDatabaseNotConnectionError, NicknameLengthError,
                                 ParamNotFoundError, DataError)
 try:
