@@ -7,4 +7,4 @@ DataBase = PyGravit(db="dbname",
                                 passwd="password",
                                 table="server_users" ) #table default users
 
-# Creating two tables: server_users and server_users_hwids (default: users and users_hwids)
+# Creating two tables: server_users and server_users_hwids (default: users and users_hwids).
