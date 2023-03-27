@@ -65,7 +65,7 @@ GravitLauncher = PyGravit(db="dbname",
 **except_processing.py**
 ```python
 from pygravit import PyGravit
-from pygravit.scripts.exceptions import (DatabaseConnectionError, NicknameInDatabaseError, NicknameNotInDatabaseError,
+from pygravit import (DatabaseConnectionError, NicknameInDatabaseError, NicknameNotInDatabaseError,
                                 AllowedCharactersNicknameError, ClassDatabaseNotConnectionError, NicknameLengthError,
                                 ParamNotFoundError, DataError)
 try:
