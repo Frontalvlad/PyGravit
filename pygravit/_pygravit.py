@@ -1,4 +1,4 @@
-from scripts.exceptions import (DatabaseConnectionError, ClassDatabaseNotConnectionError, 
+from . import (DatabaseConnectionError, ClassDatabaseNotConnectionError, 
                                 NicknameNotInDatabaseError, ParamNotFoundError, DataError,
                                 NicknameLengthError, NicknameInDatabaseError, AllowedCharactersNicknameError)
 import mysql.connector
