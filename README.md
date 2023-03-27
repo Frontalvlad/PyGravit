@@ -1,3 +1,7 @@
+<p align="center">
+      <img src="https://cdn.discordapp.com/attachments/1084489981193621580/1089661272682934303/hero.png" alt="Project Logo" width="512" height="512">
+</p>
+
 # PyGravit
 Module for managing accounts in GravitLauncher Database.
 
@@ -102,13 +106,13 @@ DataError - Failed to send data to database
 
 ### 3. Classes and Methods
 #### Classes
-```
+```python
 PyGravit(db, user, passwd, host, port) -  An object class for connecting to a database
 ```
 #### Methods
-```
+```python
 player_create(nickname, password) - Creating a player in the database
-                                          player_delete(nickname) - Removing a player from the database
-                                          player_change(nickname, param, value) - Changing the player
-                                          player_get(nickname, param) - Getting the player parameter
+player_delete(nickname) - Removing a player from the database
+player_change(nickname, param, value) - Changing the player
+player_get(nickname, param) - Getting the player parameter
 ```
