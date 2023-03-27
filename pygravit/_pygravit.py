@@ -5,7 +5,7 @@ import mysql.connector
 import bcrypt
 import datetime
 
-class PyGravit():
+class PyGravit(): # Main class
     def __init__(self, db, user, passwd, host, port = "3306", table = "users"):
         try:
             self.connection = mysql.connector.MySQLConnection(
