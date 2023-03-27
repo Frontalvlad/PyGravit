@@ -1,4 +1,4 @@
-from . import (DatabaseConnectionError, ClassDatabaseNotConnectionError, 
+from ._exceptions import (DatabaseConnectionError, ClassDatabaseNotConnectionError, 
                                 NicknameNotInDatabaseError, ParamNotFoundError, DataError,
                                 NicknameLengthError, NicknameInDatabaseError, AllowedCharactersNicknameError)
 import mysql.connector

@@ -3,7 +3,7 @@
 </p>
 
 # PyGravit
-Module for managing accounts in GravitLauncher Database.
+Module for managing accounts in GravitLauncher Database
 
 ## About
 The library is designed to manage the database of GravitLauncher players. This library is not considered official. It has four methods for managing players, which are provided below, as well as in the examples. There are also error handlers, which can also be found in the documentation below.

@@ -8,17 +8,17 @@ except DatabaseConnectionError as e:
     print(e)
 
 try:
-    GravitLauncher.player_create("Nickname", "Password") # create exceptions
+    GravitLauncher.player_create("Nickname", "Password") 
 except (NicknameInDatabaseError or AllowedCharactersNicknameError or NicknameLengthError or DataError or ClassDatabaseNotConnectionError) as e:
     print(e)
 
 try:
-    GravitLauncher.player_delete("Nickname") # delete exceptions
+    GravitLauncher.player_delete("Nickname") 
 except (NicknameNotInDatabaseError or DataError or ClassDatabaseNotConnectionError) as e:
     print(e)
 
 try:
-    GravitLauncher.player_change("Nickname", "Param", "Value") # change and get exceptions
+    GravitLauncher.player_change("Nickname", "Param", "Value")
     GravitLauncher.player_get("Nickname", "Param")
 except (NicknameNotInDatabaseError or ParamNotFoundError or DataError or ClassDatabaseNotConnectionError) as e:
     print(e)

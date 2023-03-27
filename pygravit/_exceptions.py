@@ -52,7 +52,7 @@ class AllowedCharactersNicknameError(Exception):
         if self.message:
             return "{0}".format(self.message)
         else:
-            return "The user's nickname contains prohibited characters, use allowed Minecraft symbols for your nickname."
+            return "The user's nickname contains prohibited characters. Use allowed Minecraft symbols for your nickname."
         
 class ClassDatabaseNotConnectionError(Exception):
     def __init__(self, *args: object) -> None:
