@@ -110,9 +110,9 @@ DataError - Failed to send data to database
 PyGravit(db, user, passwd, host, port) -  An object class for connecting to a database
 ```
 #### Methods
-```
+```python
 player_create(nickname, password) - Creating a player in the database
-                                          player_delete(nickname) - Removing a player from the database
-                                          player_change(nickname, param, value) - Changing the player
-                                          player_get(nickname, param) - Getting the player parameter
+player_delete(nickname) - Removing a player from the database
+player_change(nickname, param, value) - Changing the player
+player_get(nickname, param) - Getting the player parameter
 ```
