@@ -3,7 +3,7 @@ from pygravit import (DatabaseConnectionError, NicknameInDatabaseError, Nickname
                                 AllowedCharactersNicknameError, ClassDatabaseNotConnectionError, NicknameLengthError,
                                 ParamNotFoundError, DataError)
 try:
-    GravitLauncher = PyGravit(db="dbname", host="ip/domainname", port=3306, user="username", passwd="password", table="tablename (default users)")
+    GravitLauncher = PyGravit(db="dbname", host="ip/domainname", port=3306, user="username", passwd="passwd", table="tablename (default users)")
 except DatabaseConnectionError as e: 
     print(e)
 
