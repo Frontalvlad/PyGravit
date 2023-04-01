@@ -25,6 +25,10 @@ from pygravit import (DatabaseConnectionError, NicknameInDatabaseError, Nickname
 ```
 4. Check out the documentation for further work.
 
+## Updates
+
+### v0.0.1
+- No change
 
 ## Documentation
 ### 1. Examples
