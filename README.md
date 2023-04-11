@@ -123,7 +123,7 @@ player_get(nickname, param) - Getting the player parameter
 
 ### 4. FAQ
 #### F: I get an error, what should I do? (java.sql.SQLSyntaxErrorException: Table 'database.hwids' doesn't exist)
-Q: An error has been made in the official GravitLauncher documentation, so you should replace the string "tableHwid" with "tableHWID" in LaunchServer.json file.**
+Q: An error has been made in the official GravitLauncher documentation, so you should replace the string "tableHwid" with "tableHWID" in LaunchServer.json file.
 ```
         "auth": {
             ...
